@@ -7,8 +7,8 @@ use Test::Fatal;
 BEGIN {
 
     package Thing;
-    use Moo;
-    use MooX::ShortHas;
+    use Moose;
+    use MooseX::ShortHas;
 
     ro "hro";
     lazy hlazy => sub { 2 } => predicate => 1;
@@ -28,7 +28,7 @@ sub run {
 
     is $self->hro_opt, undef, "hro_opt works but did not cause blow-up on construction";
 
-    my $ro_qr = qr/Usage: Class::XSAccessor::getter\(self\)|Usage: Thing::\w+\(self\)|\w+ is a read-only accessor/;
+    my $ro_qr = qr/Cannot assign a value to a read-only accessor/;
 
     like exception { $self->hro( 2 ) }, $ro_qr, "hro is ro";
     like exception { $self->_set_hro( 2 ) }, qr/Can't locate object method "_set_hro" via package "Thing"/,
@@ -56,7 +56,7 @@ sub run {
         package Nothing;
         use Test::More;
         use Test::Fatal;
-        like exception { MooX::ShortHas->import }, qr/Moo not loaded in caller: Nothing/, "require Moo to be loaded";
+        like exception { MooseX::ShortHas->import }, qr/Class Nothing has no metaclass/, "require Moose to be loaded";
     }
 
     return;

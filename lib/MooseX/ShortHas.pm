@@ -1,10 +1,10 @@
-package MooX::ShortHas;
+package MooseX::ShortHas;
 
 use strictures 2;
 
 # VERSION
 
-# ABSTRACT: shortcuts for common Moo has attribute configurations
+# ABSTRACT: shortcuts for common Moose has attribute configurations
 
 # COPYRIGHT
 
@@ -12,7 +12,7 @@ use strictures 2;
 
 Instead of:
 
-    use Moo;
+    use Moose;
     
     has hro => is => ro => required => 1;
     has hlazy => is => lazy => builder => sub { 2 };
@@ -21,8 +21,8 @@ Instead of:
 
 You can now write:
 
-    use Moo;
-    use MooX::ShortHas;
+    use Moose;
+    use MooseX::ShortHas;
     
     ro "hro";
     lazy hlazy => sub { 2 };
@@ -35,9 +35,9 @@ And options can be added or overriden by appending them:
 
 =head1 DESCRIPTION
 
-L<Moo>'s C<has> asks developers to repeat themselves a lot to set up attributes,
-and since its inceptions the most common configurations of attributes have
-crystallized through long usage.
+L<Moose>'s C<has> asks developers to repeat themselves a lot to set up
+attributes, and since its inceptions the most common configurations of
+attributes have crystallized through long usage.
 
 This module provides sugar shortcuts that wrap around has under the appropriate
 names to reduce the effort of setting up an attribute to naming it with a
@@ -78,40 +78,40 @@ for the builder option.
 
 =item *
  
-L<Mu> - automatically wraps this module into Moo
+L<Muuse> - automatically wraps this module into Moose
 
 =item *
  
-L<Mu::Role> - automatically wraps this module into Moo::Role
+L<Muuse::Role> - automatically wraps this module into Moose::Role
 
 =item *
 
-L<Mus> - Mu but with slightly more typing and strict constructors
+L<MooX::ShortHas>, L<Mu> - the Moo-related predecessors of this module
 
 =back
 
 =cut
 
-use Moo 2.003006 ();
-use Moo::_Utils qw(_install_tracked);
+use Moose::Exporter;
+use Sub::Install 'install_sub';
+use MooseX::AttributeShortcuts ();
 
 sub _modified_has {
-    my ( $has, $mod, $name, @args ) = @_;
-    $has->( $name, @{$mod}, @args );
+    my ($mods) = @_;
+    sub {
+        @_ = ( shift, shift, @{$mods}, @_ );
+        goto &Moose::has;
+    };
 }
 
-sub import {
-    my $caller = caller;
-    my $has    = $caller->can( "has" ) or die "Moo not loaded in caller: $caller";
-    my %mods   = (
-        lazy => [qw( is lazy builder )],
-        map { $_ => [ is => $_ => required => 1 ] } qw( ro rwp rw )
-    );
-    for my $mod ( keys %mods ) {
-        _install_tracked $caller => $mod => sub {
-            _modified_has $has, $mods{$mod}, @_;
-        };
-    }
-}
+my %mods = (
+    lazy => [ is => "lazy", builder => ],
+    map +( $_ => [ is => $_, required => 1 ] ), qw( ro rwp rw ),
+);
+install_sub { into => __PACKAGE__, as => $_, code => _modified_has $mods{$_} }
+  for keys %mods;
+
+Moose::Exporter->setup_import_methods    #
+  ( with_meta => [ keys %mods ], also => "MooseX::AttributeShortcuts" );
 
 1;
