@@ -74,22 +74,22 @@
    "provides" : {
       "MooseX::ShortHas" : {
          "file" : "lib/MooseX/ShortHas.pm",
-         "version" : "1.202040"
+         "version" : "1.222490"
       }
    },
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/wchristian/MooX-ShortHas/issues"
+         "web" : "https://github.com/wchristian/MooseX-ShortHas/issues"
       },
-      "homepage" : "https://github.com/wchristian/MooX-ShortHas",
+      "homepage" : "https://github.com/wchristian/MooseX-ShortHas",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/wchristian/MooX-ShortHas.git",
-         "web" : "https://github.com/wchristian/MooX-ShortHas"
+         "url" : "https://github.com/wchristian/MooseX-ShortHas.git",
+         "web" : "https://github.com/wchristian/MooseX-ShortHas"
       }
    },
-   "version" : "1.202040",
+   "version" : "1.222490",
    "x_contributors" : [
       "Graham Knop <haarg@haarg.org>",
       "Zakariyya Mughal <zaki.mughal@gmail.com>",

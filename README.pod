@@ -6,7 +6,7 @@ MooseX::ShortHas - shortcuts for common Moose has attribute configurations
 
 =head1 VERSION
 
-version 1.202040
+version 1.222490
 
 =head1 SYNOPSIS
 
@@ -97,7 +97,7 @@ L<MooX::ShortHas>, L<Mu> - the Moo-related predecessors of this module
 =head2 Bugs / Feature Requests
 
 Please report any bugs or feature requests through the issue tracker
-at L<https://github.com/wchristian/MooX-ShortHas/issues>.
+at L<https://github.com/wchristian/MooseX-ShortHas/issues>.
 You will be notified automatically of any progress on your issue.
 
 =head2 Source Code
@@ -105,9 +105,9 @@ You will be notified automatically of any progress on your issue.
 This is open source software.  The code repository is available for
 public review and contribution under the terms of the license.
 
-L<https://github.com/wchristian/MooX-ShortHas>
+L<https://github.com/wchristian/MooseX-ShortHas>
 
-  git clone https://github.com/wchristian/MooX-ShortHas.git
+  git clone https://github.com/wchristian/MooseX-ShortHas.git
 
 =head1 AUTHOR
 
