@@ -88,6 +88,11 @@ L<Muuse::Role> - automatically wraps this module into Moose::Role
 
 L<MooX::ShortHas>, L<Mu> - the Moo-related predecessors of this module
 
+=item *
+
+L<MooseX::MungeHas> - a different module for creating your own has on all of
+Moo/Moose/Mouse
+
 =back
 
 =cut
