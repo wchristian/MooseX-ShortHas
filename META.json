@@ -74,7 +74,7 @@
    "provides" : {
       "MooseX::ShortHas" : {
          "file" : "lib/MooseX/ShortHas.pm",
-         "version" : "1.222490"
+         "version" : "1.222491"
       }
    },
    "release_status" : "stable",
@@ -89,8 +89,9 @@
          "web" : "https://github.com/wchristian/MooseX-ShortHas"
       }
    },
-   "version" : "1.222490",
+   "version" : "1.222491",
    "x_contributors" : [
+      "Christian Walde <walde@united-domains.de>",
       "Graham Knop <haarg@haarg.org>",
       "Zakariyya Mughal <zaki.mughal@gmail.com>",
       "mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>"
